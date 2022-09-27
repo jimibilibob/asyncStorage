@@ -1,4 +1,4 @@
-import { View, TouchableOpacity } from 'react-native';
+import { Dimensions, TouchableOpacity, StyleSheet } from 'react-native';
 import React from 'react';
 
 type CardColorProps = {
@@ -11,7 +11,7 @@ type CardColorState = {
 
 export default class CardColor extends React.Component<CardColorProps, CardColorState> {
     state = {
-        color: 'red'
+        color: "#" + Math.floor(Math.random()*16777215).toString(16)
     }
 
     constructor(props: CardColorProps) {
@@ -24,8 +24,15 @@ export default class CardColor extends React.Component<CardColorProps, CardColor
 
     render() {
         return (
-            <TouchableOpacity onPress={ this.changeColor } style= {  { height: '20%', width: '25%', backgroundColor: this.state.color} } >
+            <TouchableOpacity onPress={ this.changeColor } style= {  {...styles.container,  backgroundColor: this.state.color} } >
             </TouchableOpacity>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        height: Dimensions.get('screen').width * 0.25,
+        width: Dimensions.get('screen').width * 0.25
+    }
+});
