@@ -1,11 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import CardColor from './src/components/CardColor';
 
 export default function App() {
+  function randomStyle () {
+    let randomColor = Math.floor(Math.random()*16777215).toString(16)
+    console.log('Random Color', randomColor);
+    return {
+      backgroundColor: randomColor
+    }
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <CardColor onPress= {randomStyle}></CardColor>
     </View>
   );
 }
@@ -13,7 +21,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#777',
     alignItems: 'center',
     justifyContent: 'center',
   },
