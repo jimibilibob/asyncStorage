@@ -1,28 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import { StyleSheet, View, SafeAreaView, StatusBar } from 'react-native';
 import CardColor from './src/components/CardColor';
 
 export default function App() {
   function randomStyle () {
-    let randomColor = Math.floor(Math.random()*16777215).toString(16)
-    console.log('Random Color', randomColor);
-    return {
-      backgroundColor: randomColor
-    }
+    let randomColor = "#" + Math.floor(Math.random()*16777215).toString(16)
+
+    return randomColor
   }
 
   return (
-    <View style={styles.container}>
-      <CardColor onPress= {randomStyle}></CardColor>
-    </View>
+    <SafeAreaView style={styles.safeArea}>
+      <View style={styles.container}>
+       {Array.from({ length: 20 }, (_, i) => <CardColor key={i} onPress= {randomStyle}></CardColor>)}
+      </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+    paddingTop: StatusBar.currentHeight,
+  },
   container: {
     flex: 1,
-    backgroundColor: '#777',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: 'row',
+    flexWrap: 'wrap'
   },
 });

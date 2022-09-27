@@ -1,8 +1,8 @@
-import { View, Text,  TouchableOpacity, ViewStyle, TextStyle, ImageStyle } from 'react-native';
+import { View, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 type CardColorProps = {
-    onPress: () => ViewStyle | TextStyle | ImageStyle
+    onPress: () => string
 }
 
 type CardColorState = {
@@ -18,24 +18,13 @@ export default class CardColor extends React.Component<CardColorProps, CardColor
         super(props);
     }
 
-    componentDidMount(): void {}
-
-    componentWillUnmount(): void {}
-
     changeColor = () => {
-        const { color } = this.state
-        const randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
-        console.log('RANDOM COLOR', randomColor);
-        this.setState({ color: randomColor })
+        this.setState({ color: this.props.onPress() })
     }
 
     render() {
-        const { onPress } = this.props
         return (
-            <TouchableOpacity onPress={ this.changeColor }>
-                <View style= {  { height: 50, width: 50, backgroundColor: this.state.color} }>
-                    <Text>{this.state.color}</Text>
-                </View>
+            <TouchableOpacity onPress={ this.changeColor } style= {  { height: '20%', width: '25%', backgroundColor: this.state.color} } >
             </TouchableOpacity>
         );
     }
