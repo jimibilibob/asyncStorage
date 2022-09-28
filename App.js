@@ -11,7 +11,7 @@ export default function App() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
-       {Array.from({ length: 20 }, (_, i) => <CardColor key={i} onPress= {randomStyle}></CardColor>)}
+       {Array.from({ length: 20 }, (_, i) => <CardColor key={i} onPress= {randomStyle} asyncStorageKey= {i}></CardColor>)}
       </View>
     </SafeAreaView>
   );
